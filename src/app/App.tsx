@@ -33,7 +33,7 @@ export default function App() {
   ];
 
   const process = [
-    { step: '1', title: 'Diagnose', description: 'Free assessment of your device', icon: Cpu },
+    { step: '1', title: 'Diagnose', description: 'Fast assessment of your device', icon: Cpu },
     { step: '2', title: 'Quote', description: 'Transparent pricing, no hidden fees', icon: CheckCircle },
     { step: '3', title: 'Repair', description: 'Expert repair with quality parts', icon: Wrench },
     { step: '4', title: 'Test', description: 'Rigorous quality check', icon: Shield },
