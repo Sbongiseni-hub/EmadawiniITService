@@ -2,6 +2,8 @@ import { Cpu, CheckCircle, Wrench, Shield, ArrowRight, Clock, Star, Zap } from '
 import { motion } from 'motion/react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+const MotionLink = motion(Link);
 
 const steps = [
   {
@@ -77,7 +79,7 @@ export default function ProcessPage() {
         <div className="max-w-5xl mx-auto">
           <div className="space-y-8">
             {steps.map((step, i) => (
-              <motion.div
+              <MotionLink
                 key={i}
                 initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -111,7 +113,7 @@ export default function ProcessPage() {
                     <ArrowRight className="w-6 h-6" />
                   </div>
                 )}
-              </motion.div>
+              </MotionLink>
             ))}
           </div>
         </div>

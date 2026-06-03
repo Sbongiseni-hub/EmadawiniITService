@@ -8,6 +8,8 @@ import Footer from '../components/Footer';
 import ServicesPage from '../pages/ServicesPage';
 import ProcessPage from '../pages/ProcessPage';
 import ContactPage from '../pages/ContactPage';
+import { Link } from 'react-router-dom';
+const MotionLink = motion(Link);
 
 // ─── Home Page ──────────────────────────────────────────────────────────────
 function HomePage() {
@@ -149,9 +151,9 @@ function HomePage() {
           </motion.div>
           <div className="grid md:grid-cols-3 gap-8">
             {quickLinks.map((link, i) => (
-              <motion.a
+              <MotionLink
                 key={i}
-                href={link.href}
+                to={link.href}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -168,7 +170,7 @@ function HomePage() {
                 <div className="flex items-center gap-2 text-primary text-sm font-medium">
                   Learn more <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </motion.a>
+              </MotionLink>
             ))}
           </div>
         </div>

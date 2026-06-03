@@ -3,6 +3,8 @@ import { Wrench, Settings, Code, CheckCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+const MotionLink = motion(Link);
 
 const services = [
   {
@@ -60,7 +62,7 @@ export default function ServicesPage() {
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5" />
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <motion.div
+          <MotionLink
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -74,7 +76,7 @@ export default function ServicesPage() {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Comprehensive technology solutions for individuals and businesses — delivered with expertise and care.
             </p>
-          </motion.div>
+          </MotionLink>
         </div>
       </section>
 
