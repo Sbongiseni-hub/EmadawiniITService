@@ -1,30 +1,48 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Clock, MessageCircle, Facebook, Send } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-
 import { Helmet } from 'react-helmet-async';
 
-function App() {
-  return (
-    <>
-      <Helmet>
-       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5493061002059813"
-     crossOrigin="anonymous"/>
-      </Helmet>
-      {/* rest of your app */}
-    </>
-  );
-}
-
 export default function ContactPage() {
+  // Move hooks INSIDE the component
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({ name: '', email: '', service: 'Hardware Repair', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // TEMPORARY: Hardcode your credentials for testing
+  // Replace these with your actual EmailJS values
+  const EMAILJS_SERVICE_ID = 'service_ge6b4cg';     // e.g., 'service_abc123'
+  const EMAILJS_TEMPLATE_ID = 'template_maiu2cc';   // e.g., 'template_xyz789'
+  const EMAILJS_PUBLIC_KEY = 'E1Cv0iXoK9RJCnMjf';     // e.g., 'user_abc123def456'
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSending(true);
+    setError('');
+
+    if (!formRef.current) return;
+
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
+      setSubmitted(true);
+      setFormData({ name: '', email: '', service: 'Hardware Repair', message: '' });
+      if (formRef.current) formRef.current.reset();
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError('Failed to send message. Please try again later.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const contactInfo = [
@@ -43,9 +61,16 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <Helmet>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5493061002059813"
+          crossOrigin="anonymous"
+        />
+      </Helmet>
       <Navbar />
 
-      {/* Hero */}
+      {/* Hero section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5" />
         <div className="max-w-7xl mx-auto text-center relative z-10">
@@ -66,7 +91,6 @@ export default function ContactPage() {
       {/* Contact Content */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 flex-1">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-
           {/* Left: Contact Info + Socials */}
           <div className="space-y-6">
             <div className="space-y-4">
@@ -92,7 +116,6 @@ export default function ContactPage() {
               ))}
             </div>
 
-            {/* Social Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -145,11 +168,12 @@ export default function ContactPage() {
             ) : (
               <>
                 <h3 className="text-2xl mb-6">Send Us a Message</h3>
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <label className="block mb-2 text-sm">Name</label>
                     <input
                       type="text"
+                      name="user_name"
                       required
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
@@ -161,6 +185,7 @@ export default function ContactPage() {
                     <label className="block mb-2 text-sm">Email</label>
                     <input
                       type="email"
+                      name="user_email"
                       required
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
@@ -171,6 +196,7 @@ export default function ContactPage() {
                   <div>
                     <label className="block mb-2 text-sm">Service Needed</label>
                     <select
+                      name="service"
                       value={formData.service}
                       onChange={e => setFormData({ ...formData, service: e.target.value })}
                       className="w-full px-4 py-3 bg-input-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all"
@@ -184,6 +210,7 @@ export default function ContactPage() {
                   <div>
                     <label className="block mb-2 text-sm">Message</label>
                     <textarea
+                      name="message"
                       required
                       value={formData.message}
                       onChange={e => setFormData({ ...formData, message: e.target.value })}
@@ -192,14 +219,16 @@ export default function ContactPage() {
                       placeholder="Describe your tech issue or project..."
                     />
                   </div>
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                    disabled={isSending}
+                    whileHover={{ scale: isSending ? 1 : 1.02 }}
+                    whileTap={{ scale: isSending ? 1 : 0.98 }}
+                    className="w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-4 h-4" />
-                    Send Message
+                    {isSending ? 'Sending...' : 'Send Message'}
                   </motion.button>
                 </form>
               </>
