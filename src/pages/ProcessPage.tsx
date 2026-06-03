@@ -164,14 +164,14 @@ export default function ProcessPage() {
           >
             <h2 className="text-3xl mb-4">Ready to bring your device back to life?</h2>
             <p className="text-white/80 mb-8">Get started with a free diagnostic assessment today.</p>
-            <motion.a
-              href="/contact"
+            <MotionLink
+              to="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block bg-white text-primary font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all"
             >
               Contact Us Now
-            </motion.a>
+            </MotionLink>
           </motion.div>
         </div>
       </section>

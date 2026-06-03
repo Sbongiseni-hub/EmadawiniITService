@@ -135,14 +135,14 @@ export default function ServicesPage() {
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
               Contact us today for a free assessment and transparent quote on any of our services.
             </p>
-            <motion.a
-              href="/contact"
+            <MotionLink
+              to="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block bg-white text-primary font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all"
             >
               Get In Touch
-            </motion.a>
+            </MotionLink>
           </motion.div>
         </div>
       </section>
