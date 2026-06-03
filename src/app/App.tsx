@@ -49,12 +49,12 @@ export default function App() {
         className="border-b border-border bg-card/80 backdrop-blur-md sticky top-0 z-50 shadow-sm"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-23">
             <motion.div
               className="flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+              <div className="w-13 h-13 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
                 <Wrench className="w-5 h-5 text-white" />
               </div>
               <span className="font-semibold text-lg">Emadawini IT Services</span>
@@ -80,7 +80,7 @@ export default function App() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-10 pb-16 px-2 sm:px-4 lg:px-6 overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5"></div>
         <div className="absolute inset-0">
@@ -129,8 +129,7 @@ export default function App() {
               From hardware repairs to custom software development, we've got all your technology needs covered
             </p>
             
-          </motion.div>
-          -
+          </motion.div>     
           {/* Floating Icons */}
           <div className="mt-20 flex justify-center gap-8 flex-wrap">
             {[
@@ -147,8 +146,8 @@ export default function App() {
                 whileHover={{ y: -10, scale: 1.1 }}
                 className="flex flex-col items-center gap-2 cursor-pointer"
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                  <item.icon className="w-8 h-8 text-white" />
+                <div className={`w-30 h-30 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center shadow-lg`}>
+                     <item.icon className="w-10 h-10 text-white" />
                 </div>
                 <span className="text-sm text-muted-foreground">{item.label}</span>
               </motion.div>
@@ -158,7 +157,7 @@ export default function App() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary to-accent">
+      <section className="py-4 px-4 sm:px-2 lg:px-8 bg-gradient-to-r from-primary to-accent">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, i) => (
@@ -188,7 +187,7 @@ export default function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="services" className="py-15 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -292,7 +291,7 @@ export default function App() {
       </section>
 
       {/* Process Section */}
-      <section id="process" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-muted/50 to-background">
+      <section id="process" className="py-7 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-muted/50 to-background">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -344,7 +343,7 @@ export default function App() {
    
 
       {/* Why Choose Us */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-muted/50 to-background">
+      <section className="py-7 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-muted/50 to-background">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -352,7 +351,7 @@ export default function App() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl mb-4">Why Choose TechFix Pro</h2>
+            <h2 className="text-4xl mb-4">Why Choose Emadawini IT Services?</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               We're committed to providing the best technology solutions
             </p>
@@ -392,7 +391,7 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-7 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
