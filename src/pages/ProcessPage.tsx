@@ -4,6 +4,19 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 const MotionLink = motion(Link);
+import { Helmet } from 'react-helmet-async';
+
+function App() {
+  return (
+    <>
+      <Helmet>
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5493061002059813"
+     crossOrigin="anonymous"/>
+      </Helmet>
+      {/* rest of your app */}
+    </>
+  );
+}
 
 const steps = [
   {

@@ -4,6 +4,20 @@ import { motion } from 'motion/react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+import { Helmet } from 'react-helmet-async';
+
+function App() {
+  return (
+    <>
+      <Helmet>
+       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5493061002059813"
+     crossOrigin="anonymous"/>
+      </Helmet>
+      {/* rest of your app */}
+    </>
+  );
+}
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', service: 'Hardware Repair', message: '' });
   const [submitted, setSubmitted] = useState(false);
