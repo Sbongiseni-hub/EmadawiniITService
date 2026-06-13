@@ -184,14 +184,14 @@ function HomePage() {
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               Based in Siyabuswa, Mpumalanga, we've been serving the community for over 4 years with honest, fast, and professional tech solutions. From a cracked phone screen to a brand-new website, we handle it all with care.
             </p>
-            <motion.a
-              href="/contact"
+            <MotionLink
+              to="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block bg-gradient-to-r from-primary to-accent text-white px-8 py-3 rounded-xl shadow-lg font-medium"
             >
               Talk to Us Today
-            </motion.a>
+            </MotionLink>
           </motion.div>
         </div>
       </section>
