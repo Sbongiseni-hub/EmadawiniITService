@@ -59,7 +59,7 @@ function HomePage() {
               </div>
             </motion.div>
             <h1 className="text-5xl md:text-7xl mb-6 max-w-4xl mx-auto bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Hardware repairs, software services, and custom web development.
+              Your Complete Tech Solutions Partner
             </h1>
             <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
               From hardware repairs to custom software development, we've got all your technology needs covered.
