@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Laptop, Smartphone, Monitor, Code, Wrench, Zap, Star, Clock, TrendingUp, ChevronUp, ArrowRight } from 'lucide-react';
+import { Laptop, Smartphone, Monitor, Code, Wrench, Zap, Star, ChevronUp, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSmoothScroll } from '../components/SmoothScroll';
 import Navbar from '../components/Navbar';
@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import ServicesPage from '../pages/ServicesPage';
 import ProcessPage from '../pages/ProcessPage';
 import ContactPage from '../pages/ContactPage';
+import AboutPage from '../pages/AboutPage';
 import { Link } from 'react-router-dom';
 const MotionLink = motion(Link);
 
@@ -24,16 +25,10 @@ function HomePage() {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  const stats = [
-    { label: 'Devices Repaired', value: '50+', icon: Wrench },
-    { label: 'Happy Customers', value: '50+', icon: Star },
-    { label: 'Years Experience', value: '4+', icon: TrendingUp },
-    { label: 'Same Day Repairs', value: '85%', icon: Clock },
-  ];
-
   const quickLinks = [
     { href: '/services', label: 'Our Services', desc: 'Hardware, Software & Web Dev', color: 'from-blue-500 to-blue-600', icon: Wrench },
     { href: '/process', label: 'How It Works', desc: 'Our simple 4-step process', color: 'from-purple-500 to-purple-600', icon: Zap },
+    { href: '/about', label: 'About Us', desc: 'Our story and values', color: 'from-orange-500 to-orange-600', icon: Star },
     { href: '/contact', label: 'Get In Touch', desc: 'Free assessment & quote', color: 'from-green-500 to-green-600', icon: ArrowRight },
   ];
 
@@ -115,26 +110,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-10 px-4 bg-gradient-to-r from-primary to-accent">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center text-white"
-            >
-              <stat.icon className="w-10 h-10 mx-auto mb-2 opacity-80" />
-              <div className="text-4xl mb-1">{stat.value}</div>
-              <div className="text-white/80 text-sm">{stat.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
       {/* Quick Navigation Cards */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -149,7 +124,7 @@ function HomePage() {
               Explore our services, learn about our process, or contact us directly.
             </p>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {quickLinks.map((link, i) => (
               <MotionLink
                 key={i}
@@ -185,12 +160,12 @@ function HomePage() {
               Based in Siyabuswa, Mpumalanga, we've been serving the community for over 4 years with honest, fast, and professional tech solutions. From a cracked phone screen to a brand-new website, we handle it all with care.
             </p>
             <MotionLink
-              to="/contact"
+              to="/about"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block bg-gradient-to-r from-primary to-accent text-white px-8 py-3 rounded-xl shadow-lg font-medium"
             >
-              Talk to Us Today
+              Read Our Full Story
             </MotionLink>
           </motion.div>
         </div>
@@ -226,6 +201,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/process" element={<ProcessPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </BrowserRouter>
